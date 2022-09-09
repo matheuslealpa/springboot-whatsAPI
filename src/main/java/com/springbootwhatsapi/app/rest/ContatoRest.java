@@ -3,6 +3,7 @@ package com.springbootwhatsapi.app.rest;
 import com.springbootwhatsapi.app.domain.Contato;
 import com.springbootwhatsapi.app.service.ContatoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,8 @@ public class ContatoRest {
     private ContatoService contatoService;
 
     @PostMapping
-    public Contato insert(Contato contato){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Contato insert(@RequestBody Contato contato){
         return contatoService.insert(contato);
     }
 
@@ -23,12 +25,12 @@ public class ContatoRest {
         return contatoService.findAll();
     }
 
-    @GetMapping
-    public List<Contato> findContatoByNomeLike(String nome){
+    @GetMapping("/{nome}")
+    public List<Contato> findContatoByNomeLike(@PathVariable String nome){
         return contatoService.findContatoByNomeLike(nome);
     }
 
-    @GetMapping
+    @GetMapping("/{email}")
     public Contato findContatoByEmail(String email){
         return contatoService.findContatoByEmail(email);
     }
@@ -43,7 +45,8 @@ public class ContatoRest {
         return contatoService.findById(id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id, @RequestBody Contato contato){
         contatoService.delete(id, contato);
     }
