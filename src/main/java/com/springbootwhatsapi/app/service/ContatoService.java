@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContatoService {
@@ -21,8 +22,10 @@ public class ContatoService {
         return contatoRepository.findAll();
     }
 
-    public List<Contato> findContatoByNomeLike(String nome){
-        return contatoRepository.findContatoByNomeLike(nome);
+    public List<Contato> queryByNome(String nome){
+        List<Contato> contatos = contatoRepository.findContatoByNomeLike(nome);
+        return contatos.stream()
+                .collect(Collectors.toList());
     }
 
     public Contato findContatoByEmail(String email){

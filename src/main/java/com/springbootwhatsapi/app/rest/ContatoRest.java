@@ -26,8 +26,8 @@ public class ContatoRest {
     }
 
     @GetMapping("/nome/{nome}")
-    public List<Contato> findContatoByNomeLike(@PathVariable String nome){
-        return contatoService.findContatoByNomeLike(nome);
+    public List<Contato> queryByNome(@PathVariable String nome){
+        return contatoService.queryByNome(nome);
     }
 
     @GetMapping("/email/{email}")
