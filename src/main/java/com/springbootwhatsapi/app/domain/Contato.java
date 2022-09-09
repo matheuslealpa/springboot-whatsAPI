@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -19,6 +20,8 @@ public class Contato {
     @OneToMany
     private List<Telefone> telefones;
 
-    private String email;
+    @CollectionTable(name = "email", joinColumns = @JoinColumn(name = "id"))
+    @ElementCollection
+    private List<String> email = new ArrayList<>();
 
 }
