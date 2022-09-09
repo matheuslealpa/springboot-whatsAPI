@@ -25,12 +25,12 @@ public class ContatoRest {
         return contatoService.findAll();
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("/nome/{nome}")
     public List<Contato> findContatoByNomeLike(@PathVariable String nome){
         return contatoService.findContatoByNomeLike(nome);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public Contato findContatoByEmail(String email){
         return contatoService.findContatoByEmail(email);
     }
