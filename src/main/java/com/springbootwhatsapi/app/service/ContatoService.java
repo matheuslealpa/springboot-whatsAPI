@@ -2,7 +2,10 @@ package com.springbootwhatsapi.app.service;
 
 import com.springbootwhatsapi.app.domain.Contato;
 import com.springbootwhatsapi.app.repository.ContatoRepository;
+import com.springbootwhatsapi.core.repository.datafilter.RSQLParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -18,8 +21,8 @@ public class ContatoService {
         return contatoRepository.save(contato);
     }
 
-    public List<Contato> findAll(){
-        return contatoRepository.findAll();
+    public Page<Contato> findAll(RSQLParam q, Pageable pageable){
+        return contatoRepository.findAll(q.getSpecification(), pageable);
     }
 
     public List<Contato> queryByNome(String nome){

@@ -2,7 +2,10 @@ package com.springbootwhatsapi.app.rest;
 
 import com.springbootwhatsapi.app.domain.Contato;
 import com.springbootwhatsapi.app.service.ContatoService;
+import com.springbootwhatsapi.core.repository.datafilter.RSQLParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +24,8 @@ public class ContatoRest {
     }
 
     @GetMapping
-    public List<Contato> findAll(){
-        return contatoService.findAll();
+    public Page<Contato> findAll(RSQLParam q, Pageable pageable){
+        return contatoService.findAll(q, pageable);
     }
 
     @GetMapping("/nome/{nome}")
