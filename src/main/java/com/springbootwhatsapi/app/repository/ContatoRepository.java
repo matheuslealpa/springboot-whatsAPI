@@ -12,5 +12,4 @@ public interface ContatoRepository extends JpaRepository<Contato, Long>, JpaSpec
 
     List<Contato> findContatoByNomeLike(String nome);
 
-    Contato findContatoByEmail(String email);
 }

@@ -30,11 +30,6 @@ public class ContatoRest {
         return contatoService.queryByNome(nome);
     }
 
-    @GetMapping("/email/{email}")
-    public Contato findContatoByEmail(String email){
-        return contatoService.findContatoByEmail(email);
-    }
-
     @GetMapping("/{id}")
     public Contato findById(@PathVariable Long id){
         return contatoService.findById(id);

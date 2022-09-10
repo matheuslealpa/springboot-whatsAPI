@@ -28,10 +28,6 @@ public class ContatoService {
                 .collect(Collectors.toList());
     }
 
-    public Contato findContatoByEmail(String email){
-        return contatoRepository.findContatoByEmail(email);
-    }
-
     public void searchId(Long id){
         if (!contatoRepository.existsById(id)) throw
                 new EntityNotFoundException("Contato não encontrado");
