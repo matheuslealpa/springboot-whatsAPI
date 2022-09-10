@@ -20,8 +20,7 @@ public class Contato {
     @OneToMany
     private List<Telefone> telefones;
 
-    @CollectionTable(name = "email", joinColumns = @JoinColumn(name = "id"))
     @ElementCollection
-    private List<String> email = new ArrayList<>();
+    private List<String> emails = new ArrayList<>();
 
 }
