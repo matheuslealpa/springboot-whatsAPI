@@ -3,7 +3,6 @@ package com.springbootwhatsapi.app.service;
 import com.springbootwhatsapi.app.domain.Contato;
 import com.springbootwhatsapi.app.repository.ContatoRepository;
 import com.springbootwhatsapi.core.repository.datafilter.RSQLParam;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 @Service
 public class ContatoService {
 
-    @Getter
     private String entityNotFound = "Contato não encontrado.";
     @Autowired
     private ContatoRepository contatoRepository;
@@ -38,17 +36,17 @@ public class ContatoService {
 
     public Optional<Contato> findById(Long id){
         contatoRepository.findById(id).orElseThrow(() -> new
-                EntityNotFoundException(getEntityNotFound()));
+                EntityNotFoundException(this.entityNotFound));
         return contatoRepository.findById(id);
     }
 
     public Contato update(Long id, Contato contato){
-        contatoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(getEntityNotFound()));
+        contatoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(this.entityNotFound));
         return contatoRepository.save(contato);
     }
 
     public void delete(Long id, Contato contato){
-        contatoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(getEntityNotFound()));
+        contatoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(this.entityNotFound));
         contatoRepository.delete(contato);
     }
 }
